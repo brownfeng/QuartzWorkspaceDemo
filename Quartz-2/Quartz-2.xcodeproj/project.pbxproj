@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EE9BB8FA200703DF00D4E1F9 /* BezierFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8E2200703DF00D4E1F9 /* BezierFunctions.m */; };
+		EE9BB8FB200703DF00D4E1F9 /* BezierElement.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8E4200703DF00D4E1F9 /* BezierElement.m */; };
+		EE9BB8FC200703DF00D4E1F9 /* BezierUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8E5200703DF00D4E1F9 /* BezierUtils.m */; };
+		EE9BB8FD200703DF00D4E1F9 /* UIBezierPath+Elements.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8E8200703DF00D4E1F9 /* UIBezierPath+Elements.m */; };
+		EE9BB8FE200703DF00D4E1F9 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8EB200703DF00D4E1F9 /* ImageUtils.m */; };
+		EE9BB8FF200703DF00D4E1F9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8EE200703DF00D4E1F9 /* Utility.m */; };
+		EE9BB900200703DF00D4E1F9 /* BaseGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8F2200703DF00D4E1F9 /* BaseGeometry.m */; };
+		EE9BB901200703DF00D4E1F9 /* Drawing-Util.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8F7200703DF00D4E1F9 /* Drawing-Util.m */; };
+		EE9BB902200703DF00D4E1F9 /* Drawing-Block.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8F8200703DF00D4E1F9 /* Drawing-Block.m */; };
+		EE9BB903200703DF00D4E1F9 /* Drawing-Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8F9200703DF00D4E1F9 /* Drawing-Gradient.m */; };
+		EEB0D5302006FFE3009E9CA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0D52F2006FFE3009E9CA4 /* AppDelegate.m */; };
+		EEB0D5332006FFE3009E9CA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0D5322006FFE3009E9CA4 /* ViewController.m */; };
+		EEB0D5362006FFE3009E9CA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB0D5342006FFE3009E9CA4 /* Main.storyboard */; };
+		EEB0D5382006FFE3009E9CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEB0D5372006FFE3009E9CA4 /* Assets.xcassets */; };
+		EEB0D53B2006FFE3009E9CA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB0D5392006FFE3009E9CA4 /* LaunchScreen.storyboard */; };
+		EEB0D53E2006FFE3009E9CA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0D53D2006FFE3009E9CA4 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EE9BB8E1200703DF00D4E1F9 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
+		EE9BB8E2200703DF00D4E1F9 /* BezierFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierFunctions.m; sourceTree = "<group>"; };
+		EE9BB8E3200703DF00D4E1F9 /* UIBezierPath+Elements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Elements.h"; sourceTree = "<group>"; };
+		EE9BB8E4200703DF00D4E1F9 /* BezierElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierElement.m; sourceTree = "<group>"; };
+		EE9BB8E5200703DF00D4E1F9 /* BezierUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierUtils.m; sourceTree = "<group>"; };
+		EE9BB8E6200703DF00D4E1F9 /* BezierElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierElement.h; sourceTree = "<group>"; };
+		EE9BB8E7200703DF00D4E1F9 /* BezierUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierUtils.h; sourceTree = "<group>"; };
+		EE9BB8E8200703DF00D4E1F9 /* UIBezierPath+Elements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Elements.m"; sourceTree = "<group>"; };
+		EE9BB8E9200703DF00D4E1F9 /* BezierFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierFunctions.h; sourceTree = "<group>"; };
+		EE9BB8EB200703DF00D4E1F9 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		EE9BB8EC200703DF00D4E1F9 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		EE9BB8EE200703DF00D4E1F9 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		EE9BB8EF200703DF00D4E1F9 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		EE9BB8F1200703DF00D4E1F9 /* BaseGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseGeometry.h; sourceTree = "<group>"; };
+		EE9BB8F2200703DF00D4E1F9 /* BaseGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseGeometry.m; sourceTree = "<group>"; };
+		EE9BB8F4200703DF00D4E1F9 /* Drawing-Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drawing-Block.h"; sourceTree = "<group>"; };
+		EE9BB8F5200703DF00D4E1F9 /* Drawing-Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drawing-Util.h"; sourceTree = "<group>"; };
+		EE9BB8F6200703DF00D4E1F9 /* Drawing-Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drawing-Gradient.h"; sourceTree = "<group>"; };
+		EE9BB8F7200703DF00D4E1F9 /* Drawing-Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drawing-Util.m"; sourceTree = "<group>"; };
+		EE9BB8F8200703DF00D4E1F9 /* Drawing-Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drawing-Block.m"; sourceTree = "<group>"; };
+		EE9BB8F9200703DF00D4E1F9 /* Drawing-Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drawing-Gradient.m"; sourceTree = "<group>"; };
+		EEB0D52B2006FFE3009E9CA4 /* Quartz-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quartz-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB0D52E2006FFE3009E9CA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EEB0D52F2006FFE3009E9CA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EEB0D5312006FFE3009E9CA4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EEB0D5322006FFE3009E9CA4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EEB0D5352006FFE3009E9CA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEB0D5372006FFE3009E9CA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEB0D53A2006FFE3009E9CA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EEB0D53C2006FFE3009E9CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEB0D53D2006FFE3009E9CA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EEB0D5282006FFE3009E9CA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EE9BB8E0200703DF00D4E1F9 /* Bezier */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8E1200703DF00D4E1F9 /* Bezier.h */,
+				EE9BB8E2200703DF00D4E1F9 /* BezierFunctions.m */,
+				EE9BB8E3200703DF00D4E1F9 /* UIBezierPath+Elements.h */,
+				EE9BB8E4200703DF00D4E1F9 /* BezierElement.m */,
+				EE9BB8E5200703DF00D4E1F9 /* BezierUtils.m */,
+				EE9BB8E6200703DF00D4E1F9 /* BezierElement.h */,
+				EE9BB8E7200703DF00D4E1F9 /* BezierUtils.h */,
+				EE9BB8E8200703DF00D4E1F9 /* UIBezierPath+Elements.m */,
+				EE9BB8E9200703DF00D4E1F9 /* BezierFunctions.h */,
+			);
+			path = Bezier;
+			sourceTree = "<group>";
+		};
+		EE9BB8EA200703DF00D4E1F9 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8EB200703DF00D4E1F9 /* ImageUtils.m */,
+				EE9BB8EC200703DF00D4E1F9 /* ImageUtils.h */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		EE9BB8ED200703DF00D4E1F9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8EE200703DF00D4E1F9 /* Utility.m */,
+				EE9BB8EF200703DF00D4E1F9 /* Utility.h */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		EE9BB8F0200703DF00D4E1F9 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8F1200703DF00D4E1F9 /* BaseGeometry.h */,
+				EE9BB8F2200703DF00D4E1F9 /* BaseGeometry.m */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		EE9BB8F3200703DF00D4E1F9 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8F4200703DF00D4E1F9 /* Drawing-Block.h */,
+				EE9BB8F5200703DF00D4E1F9 /* Drawing-Util.h */,
+				EE9BB8F6200703DF00D4E1F9 /* Drawing-Gradient.h */,
+				EE9BB8F7200703DF00D4E1F9 /* Drawing-Util.m */,
+				EE9BB8F8200703DF00D4E1F9 /* Drawing-Block.m */,
+				EE9BB8F9200703DF00D4E1F9 /* Drawing-Gradient.m */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		EEB0D5222006FFE3009E9CA4 = {
+			isa = PBXGroup;
+			children = (
+				EEB0D52D2006FFE3009E9CA4 /* Quartz-2 */,
+				EEB0D52C2006FFE3009E9CA4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EEB0D52C2006FFE3009E9CA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEB0D52B2006FFE3009E9CA4 /* Quartz-2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEB0D52D2006FFE3009E9CA4 /* Quartz-2 */ = {
+			isa = PBXGroup;
+			children = (
+				EE9BB8E0200703DF00D4E1F9 /* Bezier */,
+				EE9BB8F3200703DF00D4E1F9 /* Drawing */,
+				EE9BB8F0200703DF00D4E1F9 /* Geometry */,
+				EE9BB8EA200703DF00D4E1F9 /* Image */,
+				EE9BB8ED200703DF00D4E1F9 /* Utility */,
+				EEB0D52E2006FFE3009E9CA4 /* AppDelegate.h */,
+				EEB0D52F2006FFE3009E9CA4 /* AppDelegate.m */,
+				EEB0D5312006FFE3009E9CA4 /* ViewController.h */,
+				EEB0D5322006FFE3009E9CA4 /* ViewController.m */,
+				EEB0D5342006FFE3009E9CA4 /* Main.storyboard */,
+				EEB0D5372006FFE3009E9CA4 /* Assets.xcassets */,
+				EEB0D5392006FFE3009E9CA4 /* LaunchScreen.storyboard */,
+				EEB0D53C2006FFE3009E9CA4 /* Info.plist */,
+				EEB0D53D2006FFE3009E9CA4 /* main.m */,
+			);
+			path = "Quartz-2";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EEB0D52A2006FFE3009E9CA4 /* Quartz-2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEB0D5412006FFE3009E9CA4 /* Build configuration list for PBXNativeTarget "Quartz-2" */;
+			buildPhases = (
+				EEB0D5272006FFE3009E9CA4 /* Sources */,
+				EEB0D5282006FFE3009E9CA4 /* Frameworks */,
+				EEB0D5292006FFE3009E9CA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quartz-2";
+			productName = "Quartz-2";
+			productReference = EEB0D52B2006FFE3009E9CA4 /* Quartz-2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EEB0D5232006FFE3009E9CA4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = pp;
+				TargetAttributes = {
+					EEB0D52A2006FFE3009E9CA4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EEB0D5262006FFE3009E9CA4 /* Build configuration list for PBXProject "Quartz-2" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EEB0D5222006FFE3009E9CA4;
+			productRefGroup = EEB0D52C2006FFE3009E9CA4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EEB0D52A2006FFE3009E9CA4 /* Quartz-2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EEB0D5292006FFE3009E9CA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB0D53B2006FFE3009E9CA4 /* LaunchScreen.storyboard in Resources */,
+				EEB0D5382006FFE3009E9CA4 /* Assets.xcassets in Resources */,
+				EEB0D5362006FFE3009E9CA4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EEB0D5272006FFE3009E9CA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB0D5332006FFE3009E9CA4 /* ViewController.m in Sources */,
+				EE9BB8FD200703DF00D4E1F9 /* UIBezierPath+Elements.m in Sources */,
+				EEB0D53E2006FFE3009E9CA4 /* main.m in Sources */,
+				EE9BB8FE200703DF00D4E1F9 /* ImageUtils.m in Sources */,
+				EE9BB903200703DF00D4E1F9 /* Drawing-Gradient.m in Sources */,
+				EE9BB900200703DF00D4E1F9 /* BaseGeometry.m in Sources */,
+				EE9BB8FF200703DF00D4E1F9 /* Utility.m in Sources */,
+				EE9BB901200703DF00D4E1F9 /* Drawing-Util.m in Sources */,
+				EE9BB8FA200703DF00D4E1F9 /* BezierFunctions.m in Sources */,
+				EEB0D5302006FFE3009E9CA4 /* AppDelegate.m in Sources */,
+				EE9BB8FC200703DF00D4E1F9 /* BezierUtils.m in Sources */,
+				EE9BB902200703DF00D4E1F9 /* Drawing-Block.m in Sources */,
+				EE9BB8FB200703DF00D4E1F9 /* BezierElement.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EEB0D5342006FFE3009E9CA4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEB0D5352006FFE3009E9CA4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EEB0D5392006FFE3009E9CA4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEB0D53A2006FFE3009E9CA4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EEB0D53F2006FFE3009E9CA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EEB0D5402006FFE3009E9CA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EEB0D5422006FFE3009E9CA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Quartz-2/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.webank.Quartz-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EEB0D5432006FFE3009E9CA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Quartz-2/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.webank.Quartz-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EEB0D5262006FFE3009E9CA4 /* Build configuration list for PBXProject "Quartz-2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB0D53F2006FFE3009E9CA4 /* Debug */,
+				EEB0D5402006FFE3009E9CA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEB0D5412006FFE3009E9CA4 /* Build configuration list for PBXNativeTarget "Quartz-2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB0D5422006FFE3009E9CA4 /* Debug */,
+				EEB0D5432006FFE3009E9CA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EEB0D5232006FFE3009E9CA4 /* Project object */;
+}
