@@ -28,7 +28,10 @@
     [super viewDidLoad];
     UIColor *darkGray = [UIColor colorWithWhite:0.333 alpha:0.8];
     UIColor *black = [UIColor colorWithWhite:0.0 alpha:0.8];
+    UIColor *fromColor = [UIColor redColor];
+    UIColor *toColor = [UIColor greenColor];
     self.gradient = [Gradient gradientFrom:darkGray to:black];
+    self.gradient = [Gradient gradientFrom:fromColor to:toColor];
     self.maskFrameRect = CGRectMake(0, 0, 400, 400);
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupCaptureSession];
@@ -60,7 +63,7 @@
         CGPoint p1 = RectGetPointAtPercents(path.bounds, 0.0, 0.0);
         CGPoint p2 = RectGetPointAtPercents(path.bounds, 0.0, 1.0);
         // 默认绘制时候 选择options: kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation
-        [self.gradient drawFrom:p1 toPoint:p2];
+        [self.gradient drawFrom:p1 toPoint:p2 style:0];
     });
 
 
@@ -84,12 +87,12 @@
 //    });
 
     //方法2
-        PushDraw(^{
-            // 另外一个直接将线条加粗
-            [path setLineWidth:5.0];
-            [[UIColor redColor] setStroke];
-            [path stroke];
-        });
+    PushDraw(^{
+        // 另外一个直接将线条加粗
+        [path setLineWidth:5.0];
+        [[UIColor redColor] setStroke];
+        [path stroke];
+    });
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

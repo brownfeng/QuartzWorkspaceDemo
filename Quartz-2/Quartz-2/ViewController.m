@@ -25,21 +25,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIColor *darkGray = [UIColor colorWithWhite:0.333 alpha:0.8];
-    UIColor *black = [UIColor colorWithWhite:0.0 alpha:0.8];
-    self.gradient = [Gradient gradientFrom:darkGray to:black];
-    //    self.gradient = [Gradient gradientUsingInterpolationBlock:^CGFloat(CGFloat percent) {
-    //        return EaseInOut(percent, 3);
-    //    } between:darkGray and:black];
-    self.maskFrameRect = CGRectMake(0, 0, 300, 300);
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
 
-    //添加launchView
+    UIColor *fromColor = [UIColor redColor];
+    UIColor *toColor = [UIColor greenColor];
+    self.gradient = [Gradient gradientFrom:fromColor to:toColor];
+    self.maskFrameRect = CGRectMake(0, 0, 300, 300);
+
     self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.imageView];
     UIImage *image = [self buildInversions2:self.imageView.bounds.size];
     self.imageView.image = image;
 
+
+    [self writeImageToDoc:image withName:@"complete"];
 }
 
 // Demonstrating the various kinds of path inversions
@@ -47,11 +46,14 @@
 {
     // 初始化
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect targetRect = SizeMakeRect(targetSize);
     CGRect inset = CGRectInset((CGRect)targetRect, 60, 60);
-    [[UIColor clearColor] setFill];
+    [[UIColor blueColor] setFill];
     UIRectFill(targetRect);
+    {
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    [self writeImageToDoc:image withName:@"1"];
+    }
 
     // 菊花图 path
     UIBezierPath *path = [self bezierPath];
@@ -60,121 +62,61 @@
     MovePathCenterToPoint(path, RectGetCenter(inset));
 
     PushDraw(^{
+        // 这个add Clip 非常重要
+//        [path addClip];
         [path.inverse addClip];
+        //        UIBezierPath *pathInvers = path.inverse;
+        //        CGRect pathInversBounds = PathBoundingBox(pathInvers);
+
         CGPoint p1 = RectGetPointAtPercents(path.bounds, 0.0, 0.0);
         CGPoint p2 = RectGetPointAtPercents(path.bounds, 0.0, 1.0);
+
+        p1 = CGPointMake(0, 0);
+        p2 = CGPointMake(0, ScreenHeight-100);
         // 默认绘制时候 选择options: kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation
-        [self.gradient drawFrom:p1 toPoint:p2];
+        [self.gradient drawFrom:p1 toPoint:p2 style:0];
     });
 
 
-    // 方法1 为了不对后面的path产生影响. 创建一个新的path
-    PushDraw(^{
-        // 后面版本有一个 clipToStroke方法
-        CGPathRef pat = path.CGPath;
-        int width = 5;
-        // CGPathCreateCopyByStrokingPath: Creates a stroked copy of another path.
+    {
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    [self writeImageToDoc:image withName:@"2"];
+    }
 
-        // 可以创建 一个path 通过stroke绘制时候的 边缘 path!!!!!!!!!
-        CGPathRef pathRef = CGPathCreateCopyByStrokingPath(pat, NULL, width, kCGLineCapButt, kCGLineJoinMiter, 4);
-        UIBezierPath *clipPath = [UIBezierPath bezierPathWithCGPath:pathRef];
-        CGPathRelease(pathRef);
-        [clipPath addClip];
-        [[UIColor redColor] setFill];
-        [clipPath fill];
 
-        //        [self.gradient drawBottomToTop:path.bounds];
+//    // 方法1 为了不对后面的path产生影响. 创建一个新的path
+//    PushDraw(^{
+//        // 后面版本有一个 clipToStroke方法
+//        CGPathRef pat = path.CGPath;
+//        int width = 5;
+//        // CGPathCreateCopyByStrokingPath: Creates a stroked copy of another path.
+//
+//        // 可以创建 一个path 通过stroke绘制时候的 边缘 path!!!!!!!!!
+//        CGPathRef pathRef = CGPathCreateCopyByStrokingPath(pat, NULL, width, kCGLineCapButt, kCGLineJoinMiter, 4);
+//        UIBezierPath *clipPath = [UIBezierPath bezierPathWithCGPath:pathRef];
+//        CGPathRelease(pathRef);
+//        [clipPath addClip];
+//        [[UIColor redColor] setFill];
+//        [clipPath fill];
+//    });
 
-    });
+    {
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        [self writeImageToDoc:image withName:@"3"];
+    }
 
     //方法2
-    //    PushDraw(^{
-    //        // 另外一个直接将线条加粗
-    //        [path setLineWidth:5.0];
-    //        [[UIColor redColor] setStroke];
-    //        [path stroke];
-    //    });
+        PushDraw(^{
+            // 另外一个直接将线条加粗
+            [path setLineWidth:5.0];
+            [[UIColor redColor] setStroke];
+            [path stroke];
+        });
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
-
-
-
-- (void)viewDidLoad1 {
-    [super viewDidLoad];
-    self.maskFrameRect = CGRectMake(0, 0, 300, 300);
-    self.view.backgroundColor = [UIColor redColor];
-
-    //添加launchView
-    self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.imageView];
-    self.imageView.image = [self buildInversions:self.imageView.bounds.size];
-}
-
-- (void)viewDidLoad2 {
-    [super viewDidLoad];
-    self.maskFrameRect = CGRectMake(0, 0, 300, 300);
-    self.view.backgroundColor = [UIColor redColor];
-
-    //添加launchView
-    self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.imageView];
-
-    CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
-    gradientLayer.bounds = self.view.bounds;
-    gradientLayer.position = self.imageView.center;
-    gradientLayer.startPoint = CGPointMake(0.0f, 0.0f);
-    gradientLayer.endPoint = CGPointMake(0.0f, 1.0f);
-    gradientLayer.colors = @[ (__bridge id)[UIColor darkGrayColor].CGColor,(__bridge id)[UIColor blackColor].CGColor];
-    gradientLayer.type = kCAGradientLayerAxial;
-    [self.imageView.layer addSublayer:gradientLayer];
-
-    UIBezierPath *path = [self bezierPath];
-    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc]init];
-    shapeLayer.path = path.CGPath;
-    CGRect bounds = CGPathGetBoundingBox(shapeLayer.path);
-    NSLog(@"%@", NSStringFromCGRect(bounds));
-    shapeLayer.bounds = bounds;
-    shapeLayer.backgroundColor = [UIColor clearColor].CGColor;
-    shapeLayer.position = self.view.center;
-    [self.imageView.layer addSublayer:shapeLayer];
-
-}
-
-
-
-
-// Demonstrating the various kinds of path inversions
-- (UIImage *) buildInversions: (CGSize) targetSize
-{
-    // 初始化
-    UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
-
-    CGRect targetRect = SizeMakeRect(targetSize);
-    CGRect inset = CGRectInset((CGRect)targetRect, 60, 60);
-    [[UIColor clearColor] setFill];
-    UIRectFill(targetRect);
-
-    // 菊花图 path
-    UIBezierPath *path = [self bezierPath];
-    // 将菊花图 path 移动到 inset 中心
-    FitPathToRect(path, self.maskFrameRect);
-    MovePathCenterToPoint(path, RectGetCenter(inset));
-
-    [path fill:[UIColor clearColor]];//给菊花path 填充颜色
-    [path.inverse fill:[UIColor grayColor]];
-
-    [path.inverse addClip];
-    UIImage *i = [UIImage imageNamed:@"image.jpg"];
-    [i drawInRect:targetRect];
-
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
 
 -(UIBezierPath *)bezierPath {
     //// Clip Path
@@ -194,6 +136,22 @@
     [pathPath addCurveToPoint: CGPointMake(16.72, 157.8) controlPoint1: CGPointMake(-4.36, 161.27) controlPoint2: CGPointMake(16.72, 157.8)];
     [pathPath closePath];
     return pathPath;
+}
+
+-(void)writeImageToDoc:(UIImage *)image withName:(NSString *)imageName{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSString *fileName = [NSString stringWithFormat:@"%@.png",imageName];
+        NSString  *pngPath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+        //    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/Test.jpg"];
+
+        // Write a UIImage to JPEG with minimum compression (best quality)
+        // The value 'image' must be a UIImage object
+        // The value '1.0' represents image compression quality as value from 0.0 to 1.0
+        //    [UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
+
+        // Write image to PNG
+        [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+    });
 }
 
 

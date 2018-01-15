@@ -18,7 +18,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imageView = imageView;
         [self addSubview:imageView];
-        [self draw3];
+        [self draw5];
     }
     return self;
 }
@@ -92,7 +92,7 @@
     [img drawInRect:CGRectMake(0, 0, 100, 100)];
 
     UIImage *resultImg = UIGraphicsGetImageFromCurrentImageContext();
-
+    UIGraphicsEndImageContext();
     self.imageView.image = resultImg;
 }
 
@@ -126,7 +126,7 @@
     CGContextSetRGBStrokeColor(context, 0, 1, 0, 1);
     CGContextFillRect(context, CGRectMake(0, 0, 400, 400));
     CGContextStrokeRect(context, CGRectMake(0, 0, width, height));
-
+    [[UIColor redColor] setFill];
     NSString *text= @"文字";
     UIFont *font=[UIFont systemFontOfSize:14];
     [text drawAtPoint:CGPointMake(100, 200) withAttributes:font.fontDescriptor.fontAttributes];
@@ -172,16 +172,61 @@
     [rect stroke];
 
     UIImage *img=[UIImage imageNamed:@"1.jpg"];
-//    CGContextTranslateCTM(context, 0, self.bounds.size.height);
-//    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextTranslateCTM(context, 0, self.bounds.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
 
     // 绘制方法!!!!!
     // CGContextDrawXXXX 方法 -> 会以 Context 的LLO为坐标系
     CGContextDrawImage(context, CGRectMake(0, 0, 100, 100), img.CGImage);
-
+    CGContextTranslateCTM(context, 0, self.bounds.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
     [img drawInRect:CGRectMake(100, 0, 100, 100)];
 
     UIImage *resultImg = UIGraphicsGetImageFromCurrentImageContext();
+    self.imageView.image = resultImg;
+}
+
+-(void)draw5{
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    float width = self.bounds.size.width;
+    float height = self.bounds.size.height;
+    int bitsPerComponent = 8;
+    //RGBA(的bytes) * bitsPerComponent *width
+    int bytesPerRow = 4 * 8 * bitsPerComponent * width;
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
+
+    //画布透明
+    CGContextFillRect(context, self.bounds);
+    CGContextSetRGBFillColor(context, 1, 0, 0, 1);
+    CGContextSetRGBStrokeColor(context, 0, 1, 0, 1);
+    CGContextFillRect(context, CGRectMake(0, 0, 400, 400));
+    CGContextStrokeRect(context, CGRectMake(0, 0, width, height));
+
+    CGColorSpaceRef myColorspace;
+    CGFloat locations[2] = {0.0, 0.5};
+    myColorspace = CGColorSpaceCreateDeviceRGB();
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:(id)[UIColor greenColor].CGColor];
+    [array addObject:(id)[UIColor redColor].CGColor];
+    [array addObject:(id)[UIColor blueColor].CGColor];
+
+
+    CGGradientRef gradientRef = CGGradientCreateWithColors(myColorspace, (__bridge CFArrayRef)array, NULL);
+
+    CGPoint myStartPoint, myEndPoint;
+    myStartPoint.x = 0.0;
+    myStartPoint.y = 0.0;
+    myEndPoint.x = 0;
+    myEndPoint.y = height;
+    CGContextDrawLinearGradient(context, gradientRef, myStartPoint, myEndPoint, 0);
+
+    CGImageRef cgimg = CGBitmapContextCreateImage(context);
+    UIImage *resultImg = [UIImage imageWithCGImage:cgimg];
+
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(cgimg);
+
     self.imageView.image = resultImg;
 }
 
@@ -190,16 +235,21 @@
 //- (void)drawRect:(CGRect)rect {
 //    // Drawing code
 //    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextTranslateCTM(context, 0, rect.size.height);
-//    CGContextScaleCTM(context, 1.0, -1.0);
+////    CGContextTranslateCTM(context, 0, rect.size.height);
+////    CGContextScaleCTM(context, 1.0, -1.0);
+//
+//
 //    CGContextSetRGBFillColor(context, 1, 0, 0, 1);
 //    CGContextFillRect(context, rect);
 //
 //
-//    CGContextTranslateCTM(context, 0, rect.size.height);
-//    CGContextScaleCTM(context, 1.0, -1.0);
+////    CGContextTranslateCTM(context, 0, rect.size.height);
+////    CGContextScaleCTM(context, 1.0, -1.0);
 //
 //
+//    UIImage *img=[UIImage imageNamed:@"1.jpg"];
+//    // 绘制方法!!!!!
+//    [img drawInRect:CGRectMake(0, 0, 100, 100)];
 //    NSString *text = @"文字";
 //    UIFont *font = [UIFont systemFontOfSize:14];
 //    [text drawInRect:rect withAttributes:font.fontDescriptor.fontAttributes];

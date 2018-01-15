@@ -507,9 +507,13 @@ CGPoint adjustPoint(CGPoint p, CGRect native, CGRect dest)
     return path;
 }
 
+static UIBezierPath * extracted(UIBezierPath *object) {
+    return [object inverseInRect:CGRectInfinite];
+}
+
 - (UIBezierPath *) inverse
 {
-    return [self inverseInRect:CGRectInfinite];
+    return extracted(self);
 }
 
 - (UIBezierPath *) boundedInverse
