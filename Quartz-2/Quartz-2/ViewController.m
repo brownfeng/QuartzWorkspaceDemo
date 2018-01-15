@@ -26,17 +26,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
+    self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.imageView];
+
 
     UIColor *fromColor = [UIColor redColor];
     UIColor *toColor = [UIColor greenColor];
     self.gradient = [Gradient gradientFrom:fromColor to:toColor];
-    self.maskFrameRect = CGRectMake(0, 0, 300, 300);
 
-    self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.imageView];
+    CGRect targetRect = self.imageView.frame;
+    CGRect inset = CGRectInset((CGRect)targetRect, 30, 30);
+
+    self.maskFrameRect = inset;
+
+
+
     UIImage *image = [self buildInversions2:self.imageView.bounds.size];
     self.imageView.image = image;
-
 
     [self writeImageToDoc:image withName:@"complete"];
 }
@@ -47,7 +53,7 @@
     // 初始化
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
     CGRect targetRect = SizeMakeRect(targetSize);
-    CGRect inset = CGRectInset((CGRect)targetRect, 60, 60);
+    CGRect inset = CGRectInset((CGRect)targetRect, 30, 30);
     [[UIColor blueColor] setFill];
     UIRectFill(targetRect);
     {
@@ -59,7 +65,9 @@
     UIBezierPath *path = [self bezierPath];
     // 将菊花图 path 移动到 inset 中心
     FitPathToRect(path, self.maskFrameRect);
-    MovePathCenterToPoint(path, RectGetCenter(inset));
+    CGPoint position = RectGetCenter(inset);
+    position.y = position.y * 4 / 5;
+    MovePathCenterToPoint(path, position);
 
     PushDraw(^{
         // 这个add Clip 非常重要
@@ -72,9 +80,9 @@
         CGPoint p2 = RectGetPointAtPercents(path.bounds, 0.0, 1.0);
 
         p1 = CGPointMake(0, 0);
-        p2 = CGPointMake(0, ScreenHeight-100);
+        p2 = CGPointMake(0, ScreenHeight);
         // 默认绘制时候 选择options: kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation
-        [self.gradient drawFrom:p1 toPoint:p2 style:0];
+        [self.gradient drawFrom:p1 toPoint:p2 style:kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation];
     });
 
 
