@@ -35,7 +35,7 @@
     self.gradient = [Gradient gradientFrom:fromColor to:toColor];
 
     CGRect targetRect = self.imageView.frame;
-    CGRect inset = CGRectInset((CGRect)targetRect, 30, 30);
+    CGRect inset = CGRectInset((CGRect)targetRect, 100, 100);
 
     self.maskFrameRect = inset;
 
@@ -52,36 +52,25 @@
 {
     // 初始化
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
-    CGRect targetRect = SizeMakeRect(targetSize);
-    CGRect inset = CGRectInset((CGRect)targetRect, 30, 30);
-    [[UIColor blueColor] setFill];
+    CGRect targetRect = (CGRect){.size = targetSize};
+//    CGRect inset = CGRectInset((CGRect)targetRect, 30, 30);
+    [[UIColor clearColor] setFill];
     UIRectFill(targetRect);
-    {
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    [self writeImageToDoc:image withName:@"1"];
-    }
 
     // 菊花图 path
     UIBezierPath *path = [self bezierPath];
     // 将菊花图 path 移动到 inset 中心
-    FitPathToRect(path, self.maskFrameRect);
-    CGPoint position = RectGetCenter(inset);
+    CGPoint position = RectGetCenter(targetRect);
     position.y = position.y * 4 / 5;
+    FitPathToRect(path, self.maskFrameRect);
+
     MovePathCenterToPoint(path, position);
 
     PushDraw(^{
-        // 这个add Clip 非常重要
-//        [path addClip];
         [path.inverse addClip];
-        //        UIBezierPath *pathInvers = path.inverse;
-        //        CGRect pathInversBounds = PathBoundingBox(pathInvers);
 
-        CGPoint p1 = RectGetPointAtPercents(path.bounds, 0.0, 0.0);
-        CGPoint p2 = RectGetPointAtPercents(path.bounds, 0.0, 1.0);
-
-        p1 = CGPointMake(0, 0);
-        p2 = CGPointMake(0, ScreenHeight);
-        // 默认绘制时候 选择options: kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation
+        CGPoint p1 = CGPointMake(0, 0);
+        CGPoint p2 = CGPointMake(0, targetSize.height);
         [self.gradient drawFrom:p1 toPoint:p2 style:kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation];
     });
 
@@ -91,35 +80,33 @@
     [self writeImageToDoc:image withName:@"2"];
     }
 
-
-//    // 方法1 为了不对后面的path产生影响. 创建一个新的path
-//    PushDraw(^{
-//        // 后面版本有一个 clipToStroke方法
-//        CGPathRef pat = path.CGPath;
-//        int width = 5;
-//        // CGPathCreateCopyByStrokingPath: Creates a stroked copy of another path.
-//
-//        // 可以创建 一个path 通过stroke绘制时候的 边缘 path!!!!!!!!!
-//        CGPathRef pathRef = CGPathCreateCopyByStrokingPath(pat, NULL, width, kCGLineCapButt, kCGLineJoinMiter, 4);
-//        UIBezierPath *clipPath = [UIBezierPath bezierPathWithCGPath:pathRef];
-//        CGPathRelease(pathRef);
-//        [clipPath addClip];
-//        [[UIColor redColor] setFill];
-//        [clipPath fill];
-//    });
+    //方法2
+    [path setLineWidth:5.0];
 
     {
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        [self writeImageToDoc:image withName:@"3"];
+    // 另外一个直接将线条加粗
+    [[UIColor redColor] setStroke];
+    [path stroke];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    [self writeImageToDoc:image withName:@"3"];
     }
 
-    //方法2
-        PushDraw(^{
-            // 另外一个直接将线条加粗
-            [path setLineWidth:5.0];
-            [[UIColor redColor] setStroke];
-            [path stroke];
-        });
+    {
+    // 另外一个直接将线条加粗
+    [[UIColor whiteColor] setStroke];
+    [path stroke];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    [self writeImageToDoc:image withName:@"4"];
+    }
+
+    {
+    // 另外一个直接将线条加粗
+    [[UIColor blueColor] setStroke];
+    [path stroke];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    [self writeImageToDoc:image withName:@"5"];
+    }
+    
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

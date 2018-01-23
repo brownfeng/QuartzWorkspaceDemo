@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0CC89F20173E67006FC5D2 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EE0CC89E20173E66006FC5D2 /* 1.jpg */; };
 		EE9BB8DD2007025000D4E1F9 /* PPView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BB8DC2007025000D4E1F9 /* PPView.m */; };
-		EE9BB8DF2007028300D4E1F9 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EE9BB8DE2007028300D4E1F9 /* 1.jpg */; };
 		EEB0D50E2006FFC4009E9CA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0D50D2006FFC4009E9CA4 /* AppDelegate.m */; };
 		EEB0D5112006FFC4009E9CA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0D5102006FFC4009E9CA4 /* ViewController.m */; };
 		EEB0D5142006FFC4009E9CA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB0D5122006FFC4009E9CA4 /* Main.storyboard */; };
@@ -18,9 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0CC89E20173E66006FC5D2 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		EE9BB8DB2007024F00D4E1F9 /* PPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPView.h; sourceTree = "<group>"; };
 		EE9BB8DC2007025000D4E1F9 /* PPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPView.m; sourceTree = "<group>"; };
-		EE9BB8DE2007028300D4E1F9 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		EEB0D5092006FFC4009E9CA4 /* Quartz-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quartz-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB0D50C2006FFC4009E9CA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EEB0D50D2006FFC4009E9CA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		EEB0D50B2006FFC4009E9CA4 /* Quartz-1 */ = {
 			isa = PBXGroup;
 			children = (
-				EE9BB8DE2007028300D4E1F9 /* 1.jpg */,
+				EE0CC89E20173E66006FC5D2 /* 1.jpg */,
 				EE9BB8DB2007024F00D4E1F9 /* PPView.h */,
 				EE9BB8DC2007025000D4E1F9 /* PPView.m */,
 				EEB0D50C2006FFC4009E9CA4 /* AppDelegate.h */,
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEB0D5192006FFC4009E9CA4 /* LaunchScreen.storyboard in Resources */,
-				EE9BB8DF2007028300D4E1F9 /* 1.jpg in Resources */,
+				EE0CC89F20173E67006FC5D2 /* 1.jpg in Resources */,
 				EEB0D5162006FFC4009E9CA4 /* Assets.xcassets in Resources */,
 				EEB0D5142006FFC4009E9CA4 /* Main.storyboard in Resources */,
 			);
