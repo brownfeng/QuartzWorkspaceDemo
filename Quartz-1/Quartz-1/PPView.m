@@ -18,7 +18,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imageView = imageView;
         [self addSubview:imageView];
-        [self draw4_2];
+        [self draw1];
     }
     return self;
 }
@@ -337,29 +337,30 @@
     self.imageView.image = resultImg;
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
+/**
+ drawRect 会帮我们做如下事情(类似于UIGraphicsBeginImageContextWithOptions,但产生的context并非 bitmapContext):
+    1. 创建一个context(注意这个context 并非 BitmapContext, 也就是说绘制的目的不是得到绘制图片, 而是直接渲染在view底层的layer 的content上)
+    2. 会隐士调用UIGraphicsPushContext(context), 将这个创建的 context push 进入UIKit context stack
+    3. 自动帮我们调整context坐标系是ULO
+
+ */
 //- (void)drawRect:(CGRect)rect {
-//    // Drawing code
+//    // 1. 直接通过UIKit API 获取当前的绘制所在的context
 //    CGContextRef context = UIGraphicsGetCurrentContext();
-////    CGContextTranslateCTM(context, 0, rect.size.height);
-////    CGContextScaleCTM(context, 1.0, -1.0);
 //
-//
+//    // 2. 设置背景等等
 //    CGContextSetRGBFillColor(context, 1, 0, 0, 1);
 //    CGContextFillRect(context, rect);
 //
-//
-////    CGContextTranslateCTM(context, 0, rect.size.height);
-////    CGContextScaleCTM(context, 1.0, -1.0);
-//
-//
-//    UIImage *img=[UIImage imageNamed:@"1.jpg"];
-//    // 绘制方法!!!!!
+//    // 3. 使用UIKit API 进行绘制
+//    UIImage *img = [UIImage imageNamed:@"1.jpg"];
 //    [img drawInRect:CGRectMake(0, 0, 100, 100)];
 //    NSString *text = @"文字";
 //    UIFont *font = [UIFont systemFontOfSize:14];
-//    [text drawInRect:rect withAttributes:font.fontDescriptor.fontAttributes];
+//    [text drawAtPoint:CGPointMake(100, 100) withAttributes:font.fontDescriptor.fontAttributes];
+//
+//    // ps: 无需清理
 //}
 
 
