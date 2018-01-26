@@ -17,8 +17,6 @@
 @interface ViewController ()
 @property (nonatomic, strong) UIImageView * imageView;
 @property (nonatomic, assign) CGRect maskFrameRect;
-
-@property (nonatomic, strong) Gradient *gradient;
 @end
 
 @implementation ViewController
@@ -29,52 +27,121 @@
     self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.imageView];
 
-    UIColor *fromColor = [UIColor redColor];
-    UIColor *toColor = [UIColor greenColor];
-    self.gradient = [Gradient gradientFrom:fromColor to:toColor];
-
     self.maskFrameRect = CGRectMake(0, 0, 300, 300);
 
-    UIImage *image = [self buildInversions2:self.imageView.bounds.size];
+    UIImage *image = [self buildImage3:self.imageView.bounds.size];
     self.imageView.image = image;
 }
 
-// Demonstrating the various kinds of path inversions
-- (UIImage *) buildInversions2: (CGSize) targetSize
-{
-    // 初始化
+- (UIImage *)buildImage1:(CGSize)targetSize{
+    UIGraphicsBeginImageContextWithOptions(targetSize, YES, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    //使用rgb颜色空间
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+
+    /*指定渐变色
+     space:颜色空间
+     components:颜色数组,注意由于指定了RGB颜色空间，那么四个数组元素表示一个颜色（red、green、blue、alpha），
+     如果有三个颜色则这个数组有4*3个元素
+     locations:颜色所在位置（范围0~1），这个数组的个数不小于components中存放颜色的个数
+     count:渐变个数，等于locations的个数
+     */
+
+    CGFloat components[8]={
+        255/255.0, 0/255.0,   0/255.0,  1, // 红色
+        0/255.0  , 255/255.0, 0/255.0,  1 // 绿色
+    };
+    CGFloat locations[2]={0,1.0};
+    CGGradientRef gradient= CGGradientCreateWithColorComponents(colorSpace, components, locations, 2);
+
+    /*绘制线性渐变
+     context:图形上下文
+     gradient:渐变色
+     startPoint:起始位置
+     endPoint:终止位置
+     options:绘制方式,kCGGradientDrawsBeforeStartLocation 开始位置之前就进行绘制，到结束位置之后不再绘制，
+     kCGGradientDrawsAfterEndLocation开始位置之前不进行绘制，到结束点之后继续填充
+     */
+    CGContextDrawLinearGradient(context, gradient, CGPointZero, CGPointMake(0, targetSize.height), kCGGradientDrawsAfterEndLocation);
+
+    //释放颜色空间
+    CGColorSpaceRelease(colorSpace);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIImage *)buildImage2:(CGSize)targetSize{
+    UIGraphicsBeginImageContextWithOptions(targetSize, YES, 0.0);
+    UIColor *fromColor = [UIColor blueColor];
+    UIColor *toColor = [UIColor greenColor];
+    Gradient *gradient = [Gradient gradientFrom:fromColor to:toColor];
+    [gradient drawTopToBottom:CGRectMake(0, 0, targetSize.width, targetSize.height)];
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIImage *) buildImage3: (CGSize) targetSize {
+    // 1. 初始化Context
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
     CGRect targetRect = (CGRect){.size = targetSize};
 
     [[UIColor clearColor] setFill];
     UIRectFill(targetRect);
 
-    // 菊花图 path
+    // 2. 获取飞燕Path
     UIBezierPath *path = [self bezierPath];
-    // 将菊花图 path 移动到 inset 中心
+
+    // 3. 移动Path到整个targetSize的正中心, 并且修改Path的bounds
     CGPoint position = RectGetCenter(targetRect);
     FitPathToRect(path, self.maskFrameRect);
-
     MovePathCenterToPoint(path, position);
 
+    // 4. 绘制飞燕Path外部渐变色从顶部到底部. 从红色到绿色
     PushDraw(^{
+
+        // 4.1 先获取path的反向区域. 然后使用addClip, 后面操作的内容只会作用于 path.inverse 区域
         [path.inverse addClip];
 
-        CGPoint p1 = CGPointMake(0, 0);
-        CGPoint p2 = CGPointMake(0, targetSize.height);
-        [self.gradient drawFrom:p1 toPoint:p2 style:kCGGradientDrawsAfterEndLocation | kCGGradientDrawsBeforeStartLocation];
+        // 4.2 创建 Gradient
+        UIColor *fromColor = [UIColor redColor];
+        UIColor *toColor = [UIColor greenColor];
+        Gradient *gradient = [Gradient gradientFrom:fromColor to:toColor];
+
+        // 4.3 在 path.inverse 区域绘图
+        [gradient drawTopToBottom:CGRectMake(0, 0, targetSize.width,targetSize.height)];
     });
 
+    // 5. 绘制飞燕Path内部  渐变色从顶部到底部. 从绿色到红色
+    PushDraw(^{
+        // 5.1 对path 使用addClip, 后面的操作只会作用于 path 包裹区域内
+        [path addClip];
+
+        // 5.2 创建Gradient
+        UIColor *fromColor = [UIColor greenColor];
+        UIColor *toColor = [UIColor redColor];
+        Gradient *gradient = [Gradient gradientFrom:fromColor to:toColor];
+
+        // 5.3 在 path 包裹的区域内绘图
+        [gradient drawTopToBottom:CGRectMake(0, 0, targetSize.width,targetSize.height)];
+    });
+
+    // 6 绘制飞燕的bounds
     PushDraw(^{
         [[UIColor blackColor] set];
         UIBezierPath *roundPath = [UIBezierPath bezierPathWithRect:PathBoundingBox(path)];
         [roundPath stroke];
     });
 
-    // 另外一个直接将线条加粗
-    [[UIColor whiteColor] setStroke];
-    [path stroke];
-    
+    // 7 绘制飞燕path的轮廓
+    PushDraw(^{
+        [[UIColor whiteColor] setStroke];
+        [path stroke];
+    });
+
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
